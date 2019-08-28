@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+source ./.env
+
+DEFAULT_NGINX_CONFIG=./defaultmoodlenginx.conf
+NGINX_CONFIG=./mymoodlenginxssl.conf
+
+
+if test -f "$DEFAULT_NGINX_CONFIG"; then
+
+    sed "s/MOODLE_DOMAIN/$MOODLE_DOMAIN/g"   $DEFAULT_NGINX_CONFIG > $NGINX_CONFIG
+    sed -i "s/MOODLE_NETWORK/$MOODLE_NETWORK/g" $NGINX_CONFIG
+    sed -i "s/MOODLE_PORT/$MOODLE_PORT/g"      $NGINX_CONFIG 
+    
+fi
+

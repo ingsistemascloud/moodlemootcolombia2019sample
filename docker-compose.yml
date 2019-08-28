@@ -1,0 +1,34 @@
+version: '3'
+services:
+  moodledb:
+    container_name: moodledb
+    image: mariadb
+    env_file:
+    - .env 
+    volumes:
+      - ${DATABASE_FOLDER}:/var/lib/mysql
+    ports:
+      - 3306:3306
+    restart: always
+
+  moodleapp:
+    container_name: moodleapp
+    image: ingsistemascloud/moodle
+    env_file:
+    - .env 
+    volumes:
+      - ${MOODLE_FOLDER}:/var/www/html/moodle
+      - ${MOODLEDATA_FOLDER}:/var/www/html/moodledata
+      - ./.env:/home/.env
+    command: bash /home/start.sh
+    ports:
+      - ${MOODLE_NETWORK}:${MOODLE_PORT}:80
+  nginxproxy:
+    container_name: nginxproxy
+    image: nginx    
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+      - ./mymoodlenginx.conf:/etc/nginx/conf.d/mymoodlenginx.conf
+    ports:
+      - 80:80
+      - 443:443

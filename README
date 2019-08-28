@@ -1,0 +1,33 @@
+*******************************************************************************
+* Taller Moodle Moot 2019 - Bogota Agosto 29 y 30 de 2019
+* Universidad Francisco de Paula Santander Cúcuta
+* Programa de Ingeniería de Sistemas - http://ingsistemas.cloud.ufps.edu.co/
+* Semillero SILUX https://www.facebook.com/groups/silux/?ref=bookmarks
+* Equipo Cloud Computing:
+* Milton Jesús Vera Contreras - miltonjesusvc@ufps.edu.co miljeveco@gmail.com
+* Jairo Andrés Castañeda Pacheco - jairoandrescp@ufps.edu.co andresbbx@gmail.com
+* Carlos Iván Ortega Álvarez - carlosivanoa@ufps.edu.co carlos22ivan@gmail.com 
+*******************************************************************************
+
+1) Información General sobre los ficheros de este directorio:
+
+El fichero docker-compose.yml corresponde a la configuración para desplegar usando docker-compose.
+
+El fichero oculto .env contiene las variables que debe configurar el usuario, como usuarios, contraseñas y direcciones de la BD, dominio y demás componentes.
+
+El fichero defaultmoodlenginx.conf corresponde a la configuración plantilla del servidor web nginx para SSL. No modificarlo.
+
+El fichero configssl.sh toma el fichero anterior y genera un fichero personalizado según las variables configuradas por el usuario en el fichero oculto .env. El fichero generado se llama mymoodlenginx.conf y es montado como un volumen en el docker de nginx.
+
+Los demás ficheros de extensión sh son scripts para intalar los paquetes requeridos
+
+2) Instrucciones:
+a) Instalar docker y docker-compose. Usar installdocker.sh
+b) Generar el certificado SSL para el dominio público que tendrá moodle. En este taller se usa cerbot en Ubuntu https://certbot.eff.org/lets-encrypt/ubuntubionic-other
+c) Editar el fichero de configuración .env con las variables requeridas. No olvidar el dominio
+d) Ejecutar el comando sudo docker-compose up -d para desplegar
+e) Terminar el proceso de instalación de Moodle con el asistente web
+f) Probar el funcionamiento sin SSL
+g) Ejecutar el script configssl.sh
+h) Ejecutar el comando docker-compose up --build -d para actualizar a ssl los docker
+i) Probar el funcionamiento con SSL
