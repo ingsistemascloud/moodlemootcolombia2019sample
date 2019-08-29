@@ -5,3 +5,8 @@ sudo add-apt-repository ppa:certbot/certbot
 sudo apt-get update
 sudo apt-get install certbot 
 sudo certbot certonly --standalone
+sudo chown -R root:ubuntu /etc/letsencrypt/
+sudo chmod 755 /etc/letsencrypt/
+sudo chmod 755 /etc/letsencrypt/live/
+sudo chmod 755 /etc/letsencrypt/archive/
+

@@ -51,7 +51,3 @@ else
     echo ${RED}">    ERROR: the .env file not found."${NORMAL}
 fi
 
-sudo chown -R root:ubuntu /etc/letsencrypt/
-sudo chmod 755 /etc/letsencrypt/
-sudo chmod 755 /etc/letsencrypt/live/
-sudo chmod 755 /etc/letsencrypt/archive/
