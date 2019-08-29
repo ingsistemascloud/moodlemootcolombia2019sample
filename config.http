@@ -2,8 +2,8 @@
 
 source ./.env
 
-DEFAULT_NGINX_CONFIG=./default-moodle-nginx-ssl.conf
-NGINX_CONFIG=./my-moodle-nginx-ssl.conf
+DEFAULT_NGINX_CONFIG=./default-moodle-nginx.conf
+NGINX_CONFIG=./my-moodle-nginx.conf
 
 
 if test -f "$DEFAULT_NGINX_CONFIG"; then
@@ -15,4 +15,4 @@ if test -f "$DEFAULT_NGINX_CONFIG"; then
 fi
 
 rm -rf docker-compose.yml
-cp docker-compose.yml.ssl docker-compose.yml
+cp docker-compose.yml.http docker-compose.yml
